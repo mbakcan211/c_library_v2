@@ -5,8 +5,8 @@
 
 
 typedef struct __mavlink_qr_location_packet_t {
- int32_t qr_latitude; /*< [degE7] QR kodun enlem koordinatı*/
- int32_t qr_longitude; /*< [degE7] QR kodun boylam koordinatı*/
+ float qr_latitude; /*< [degE7] QR kodun enlem koordinatı*/
+ float qr_longitude; /*< [degE7] QR kodun boylam koordinatı*/
 } mavlink_qr_location_packet_t;
 
 #define MAVLINK_MSG_ID_QR_LOCATION_PACKET_LEN 8
@@ -14,8 +14,8 @@ typedef struct __mavlink_qr_location_packet_t {
 #define MAVLINK_MSG_ID_13008_LEN 8
 #define MAVLINK_MSG_ID_13008_MIN_LEN 8
 
-#define MAVLINK_MSG_ID_QR_LOCATION_PACKET_CRC 191
-#define MAVLINK_MSG_ID_13008_CRC 191
+#define MAVLINK_MSG_ID_QR_LOCATION_PACKET_CRC 131
+#define MAVLINK_MSG_ID_13008_CRC 131
 
 
 
@@ -24,16 +24,16 @@ typedef struct __mavlink_qr_location_packet_t {
     13008, \
     "QR_LOCATION_PACKET", \
     2, \
-    {  { "qr_latitude", NULL, MAVLINK_TYPE_INT32_T, 0, 0, offsetof(mavlink_qr_location_packet_t, qr_latitude) }, \
-         { "qr_longitude", NULL, MAVLINK_TYPE_INT32_T, 0, 4, offsetof(mavlink_qr_location_packet_t, qr_longitude) }, \
+    {  { "qr_latitude", NULL, MAVLINK_TYPE_FLOAT, 0, 0, offsetof(mavlink_qr_location_packet_t, qr_latitude) }, \
+         { "qr_longitude", NULL, MAVLINK_TYPE_FLOAT, 0, 4, offsetof(mavlink_qr_location_packet_t, qr_longitude) }, \
          } \
 }
 #else
 #define MAVLINK_MESSAGE_INFO_QR_LOCATION_PACKET { \
     "QR_LOCATION_PACKET", \
     2, \
-    {  { "qr_latitude", NULL, MAVLINK_TYPE_INT32_T, 0, 0, offsetof(mavlink_qr_location_packet_t, qr_latitude) }, \
-         { "qr_longitude", NULL, MAVLINK_TYPE_INT32_T, 0, 4, offsetof(mavlink_qr_location_packet_t, qr_longitude) }, \
+    {  { "qr_latitude", NULL, MAVLINK_TYPE_FLOAT, 0, 0, offsetof(mavlink_qr_location_packet_t, qr_latitude) }, \
+         { "qr_longitude", NULL, MAVLINK_TYPE_FLOAT, 0, 4, offsetof(mavlink_qr_location_packet_t, qr_longitude) }, \
          } \
 }
 #endif
@@ -49,12 +49,12 @@ typedef struct __mavlink_qr_location_packet_t {
  * @return length of the message in bytes (excluding serial stream start sign)
  */
 static inline uint16_t mavlink_msg_qr_location_packet_pack(uint8_t system_id, uint8_t component_id, mavlink_message_t* msg,
-                               int32_t qr_latitude, int32_t qr_longitude)
+                               float qr_latitude, float qr_longitude)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
     char buf[MAVLINK_MSG_ID_QR_LOCATION_PACKET_LEN];
-    _mav_put_int32_t(buf, 0, qr_latitude);
-    _mav_put_int32_t(buf, 4, qr_longitude);
+    _mav_put_float(buf, 0, qr_latitude);
+    _mav_put_float(buf, 4, qr_longitude);
 
         memcpy(_MAV_PAYLOAD_NON_CONST(msg), buf, MAVLINK_MSG_ID_QR_LOCATION_PACKET_LEN);
 #else
@@ -81,12 +81,12 @@ static inline uint16_t mavlink_msg_qr_location_packet_pack(uint8_t system_id, ui
  * @return length of the message in bytes (excluding serial stream start sign)
  */
 static inline uint16_t mavlink_msg_qr_location_packet_pack_status(uint8_t system_id, uint8_t component_id, mavlink_status_t *_status, mavlink_message_t* msg,
-                               int32_t qr_latitude, int32_t qr_longitude)
+                               float qr_latitude, float qr_longitude)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
     char buf[MAVLINK_MSG_ID_QR_LOCATION_PACKET_LEN];
-    _mav_put_int32_t(buf, 0, qr_latitude);
-    _mav_put_int32_t(buf, 4, qr_longitude);
+    _mav_put_float(buf, 0, qr_latitude);
+    _mav_put_float(buf, 4, qr_longitude);
 
         memcpy(_MAV_PAYLOAD_NON_CONST(msg), buf, MAVLINK_MSG_ID_QR_LOCATION_PACKET_LEN);
 #else
@@ -117,12 +117,12 @@ static inline uint16_t mavlink_msg_qr_location_packet_pack_status(uint8_t system
  */
 static inline uint16_t mavlink_msg_qr_location_packet_pack_chan(uint8_t system_id, uint8_t component_id, uint8_t chan,
                                mavlink_message_t* msg,
-                                   int32_t qr_latitude,int32_t qr_longitude)
+                                   float qr_latitude,float qr_longitude)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
     char buf[MAVLINK_MSG_ID_QR_LOCATION_PACKET_LEN];
-    _mav_put_int32_t(buf, 0, qr_latitude);
-    _mav_put_int32_t(buf, 4, qr_longitude);
+    _mav_put_float(buf, 0, qr_latitude);
+    _mav_put_float(buf, 4, qr_longitude);
 
         memcpy(_MAV_PAYLOAD_NON_CONST(msg), buf, MAVLINK_MSG_ID_QR_LOCATION_PACKET_LEN);
 #else
@@ -187,12 +187,12 @@ static inline uint16_t mavlink_msg_qr_location_packet_encode_status(uint8_t syst
  */
 #ifdef MAVLINK_USE_CONVENIENCE_FUNCTIONS
 
-static inline void mavlink_msg_qr_location_packet_send(mavlink_channel_t chan, int32_t qr_latitude, int32_t qr_longitude)
+static inline void mavlink_msg_qr_location_packet_send(mavlink_channel_t chan, float qr_latitude, float qr_longitude)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
     char buf[MAVLINK_MSG_ID_QR_LOCATION_PACKET_LEN];
-    _mav_put_int32_t(buf, 0, qr_latitude);
-    _mav_put_int32_t(buf, 4, qr_longitude);
+    _mav_put_float(buf, 0, qr_latitude);
+    _mav_put_float(buf, 4, qr_longitude);
 
     _mav_finalize_message_chan_send(chan, MAVLINK_MSG_ID_QR_LOCATION_PACKET, buf, MAVLINK_MSG_ID_QR_LOCATION_PACKET_MIN_LEN, MAVLINK_MSG_ID_QR_LOCATION_PACKET_LEN, MAVLINK_MSG_ID_QR_LOCATION_PACKET_CRC);
 #else
@@ -226,12 +226,12 @@ static inline void mavlink_msg_qr_location_packet_send_struct(mavlink_channel_t 
   is usually the receive buffer for the channel, and allows a reply to an
   incoming message with minimum stack space usage.
  */
-static inline void mavlink_msg_qr_location_packet_send_buf(mavlink_message_t *msgbuf, mavlink_channel_t chan,  int32_t qr_latitude, int32_t qr_longitude)
+static inline void mavlink_msg_qr_location_packet_send_buf(mavlink_message_t *msgbuf, mavlink_channel_t chan,  float qr_latitude, float qr_longitude)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
     char *buf = (char *)msgbuf;
-    _mav_put_int32_t(buf, 0, qr_latitude);
-    _mav_put_int32_t(buf, 4, qr_longitude);
+    _mav_put_float(buf, 0, qr_latitude);
+    _mav_put_float(buf, 4, qr_longitude);
 
     _mav_finalize_message_chan_send(chan, MAVLINK_MSG_ID_QR_LOCATION_PACKET, buf, MAVLINK_MSG_ID_QR_LOCATION_PACKET_MIN_LEN, MAVLINK_MSG_ID_QR_LOCATION_PACKET_LEN, MAVLINK_MSG_ID_QR_LOCATION_PACKET_CRC);
 #else
@@ -254,9 +254,9 @@ static inline void mavlink_msg_qr_location_packet_send_buf(mavlink_message_t *ms
  *
  * @return [degE7] QR kodun enlem koordinatı
  */
-static inline int32_t mavlink_msg_qr_location_packet_get_qr_latitude(const mavlink_message_t* msg)
+static inline float mavlink_msg_qr_location_packet_get_qr_latitude(const mavlink_message_t* msg)
 {
-    return _MAV_RETURN_int32_t(msg,  0);
+    return _MAV_RETURN_float(msg,  0);
 }
 
 /**
@@ -264,9 +264,9 @@ static inline int32_t mavlink_msg_qr_location_packet_get_qr_latitude(const mavli
  *
  * @return [degE7] QR kodun boylam koordinatı
  */
-static inline int32_t mavlink_msg_qr_location_packet_get_qr_longitude(const mavlink_message_t* msg)
+static inline float mavlink_msg_qr_location_packet_get_qr_longitude(const mavlink_message_t* msg)
 {
-    return _MAV_RETURN_int32_t(msg,  4);
+    return _MAV_RETURN_float(msg,  4);
 }
 
 /**

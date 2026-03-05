@@ -5,18 +5,18 @@
 
 
 typedef struct __mavlink_enemy_gps_packet_t {
- int32_t enemy_latitude; /*< [degE7] rakip enlem koordinat verisi*/
- int32_t enemy_longitude; /*< [degE7] rakip boylam koordinat verisi*/
- uint8_t enemy_altitude; /*< [m] rakip irtifa verisi*/
+ float enemy_latitude; /*< [degE7] rakip enlem koordinat verisi*/
+ float enemy_longitude; /*< [degE7] rakip boylam koordinat verisi*/
+ float enemy_altitude; /*< [m] rakip irtifa verisi*/
 } mavlink_enemy_gps_packet_t;
 
-#define MAVLINK_MSG_ID_ENEMY_GPS_PACKET_LEN 9
-#define MAVLINK_MSG_ID_ENEMY_GPS_PACKET_MIN_LEN 9
-#define MAVLINK_MSG_ID_13004_LEN 9
-#define MAVLINK_MSG_ID_13004_MIN_LEN 9
+#define MAVLINK_MSG_ID_ENEMY_GPS_PACKET_LEN 12
+#define MAVLINK_MSG_ID_ENEMY_GPS_PACKET_MIN_LEN 12
+#define MAVLINK_MSG_ID_13004_LEN 12
+#define MAVLINK_MSG_ID_13004_MIN_LEN 12
 
-#define MAVLINK_MSG_ID_ENEMY_GPS_PACKET_CRC 204
-#define MAVLINK_MSG_ID_13004_CRC 204
+#define MAVLINK_MSG_ID_ENEMY_GPS_PACKET_CRC 3
+#define MAVLINK_MSG_ID_13004_CRC 3
 
 
 
@@ -25,18 +25,18 @@ typedef struct __mavlink_enemy_gps_packet_t {
     13004, \
     "ENEMY_GPS_PACKET", \
     3, \
-    {  { "enemy_latitude", NULL, MAVLINK_TYPE_INT32_T, 0, 0, offsetof(mavlink_enemy_gps_packet_t, enemy_latitude) }, \
-         { "enemy_longitude", NULL, MAVLINK_TYPE_INT32_T, 0, 4, offsetof(mavlink_enemy_gps_packet_t, enemy_longitude) }, \
-         { "enemy_altitude", NULL, MAVLINK_TYPE_UINT8_T, 0, 8, offsetof(mavlink_enemy_gps_packet_t, enemy_altitude) }, \
+    {  { "enemy_latitude", NULL, MAVLINK_TYPE_FLOAT, 0, 0, offsetof(mavlink_enemy_gps_packet_t, enemy_latitude) }, \
+         { "enemy_longitude", NULL, MAVLINK_TYPE_FLOAT, 0, 4, offsetof(mavlink_enemy_gps_packet_t, enemy_longitude) }, \
+         { "enemy_altitude", NULL, MAVLINK_TYPE_FLOAT, 0, 8, offsetof(mavlink_enemy_gps_packet_t, enemy_altitude) }, \
          } \
 }
 #else
 #define MAVLINK_MESSAGE_INFO_ENEMY_GPS_PACKET { \
     "ENEMY_GPS_PACKET", \
     3, \
-    {  { "enemy_latitude", NULL, MAVLINK_TYPE_INT32_T, 0, 0, offsetof(mavlink_enemy_gps_packet_t, enemy_latitude) }, \
-         { "enemy_longitude", NULL, MAVLINK_TYPE_INT32_T, 0, 4, offsetof(mavlink_enemy_gps_packet_t, enemy_longitude) }, \
-         { "enemy_altitude", NULL, MAVLINK_TYPE_UINT8_T, 0, 8, offsetof(mavlink_enemy_gps_packet_t, enemy_altitude) }, \
+    {  { "enemy_latitude", NULL, MAVLINK_TYPE_FLOAT, 0, 0, offsetof(mavlink_enemy_gps_packet_t, enemy_latitude) }, \
+         { "enemy_longitude", NULL, MAVLINK_TYPE_FLOAT, 0, 4, offsetof(mavlink_enemy_gps_packet_t, enemy_longitude) }, \
+         { "enemy_altitude", NULL, MAVLINK_TYPE_FLOAT, 0, 8, offsetof(mavlink_enemy_gps_packet_t, enemy_altitude) }, \
          } \
 }
 #endif
@@ -53,13 +53,13 @@ typedef struct __mavlink_enemy_gps_packet_t {
  * @return length of the message in bytes (excluding serial stream start sign)
  */
 static inline uint16_t mavlink_msg_enemy_gps_packet_pack(uint8_t system_id, uint8_t component_id, mavlink_message_t* msg,
-                               int32_t enemy_latitude, int32_t enemy_longitude, uint8_t enemy_altitude)
+                               float enemy_latitude, float enemy_longitude, float enemy_altitude)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
     char buf[MAVLINK_MSG_ID_ENEMY_GPS_PACKET_LEN];
-    _mav_put_int32_t(buf, 0, enemy_latitude);
-    _mav_put_int32_t(buf, 4, enemy_longitude);
-    _mav_put_uint8_t(buf, 8, enemy_altitude);
+    _mav_put_float(buf, 0, enemy_latitude);
+    _mav_put_float(buf, 4, enemy_longitude);
+    _mav_put_float(buf, 8, enemy_altitude);
 
         memcpy(_MAV_PAYLOAD_NON_CONST(msg), buf, MAVLINK_MSG_ID_ENEMY_GPS_PACKET_LEN);
 #else
@@ -88,13 +88,13 @@ static inline uint16_t mavlink_msg_enemy_gps_packet_pack(uint8_t system_id, uint
  * @return length of the message in bytes (excluding serial stream start sign)
  */
 static inline uint16_t mavlink_msg_enemy_gps_packet_pack_status(uint8_t system_id, uint8_t component_id, mavlink_status_t *_status, mavlink_message_t* msg,
-                               int32_t enemy_latitude, int32_t enemy_longitude, uint8_t enemy_altitude)
+                               float enemy_latitude, float enemy_longitude, float enemy_altitude)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
     char buf[MAVLINK_MSG_ID_ENEMY_GPS_PACKET_LEN];
-    _mav_put_int32_t(buf, 0, enemy_latitude);
-    _mav_put_int32_t(buf, 4, enemy_longitude);
-    _mav_put_uint8_t(buf, 8, enemy_altitude);
+    _mav_put_float(buf, 0, enemy_latitude);
+    _mav_put_float(buf, 4, enemy_longitude);
+    _mav_put_float(buf, 8, enemy_altitude);
 
         memcpy(_MAV_PAYLOAD_NON_CONST(msg), buf, MAVLINK_MSG_ID_ENEMY_GPS_PACKET_LEN);
 #else
@@ -127,13 +127,13 @@ static inline uint16_t mavlink_msg_enemy_gps_packet_pack_status(uint8_t system_i
  */
 static inline uint16_t mavlink_msg_enemy_gps_packet_pack_chan(uint8_t system_id, uint8_t component_id, uint8_t chan,
                                mavlink_message_t* msg,
-                                   int32_t enemy_latitude,int32_t enemy_longitude,uint8_t enemy_altitude)
+                                   float enemy_latitude,float enemy_longitude,float enemy_altitude)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
     char buf[MAVLINK_MSG_ID_ENEMY_GPS_PACKET_LEN];
-    _mav_put_int32_t(buf, 0, enemy_latitude);
-    _mav_put_int32_t(buf, 4, enemy_longitude);
-    _mav_put_uint8_t(buf, 8, enemy_altitude);
+    _mav_put_float(buf, 0, enemy_latitude);
+    _mav_put_float(buf, 4, enemy_longitude);
+    _mav_put_float(buf, 8, enemy_altitude);
 
         memcpy(_MAV_PAYLOAD_NON_CONST(msg), buf, MAVLINK_MSG_ID_ENEMY_GPS_PACKET_LEN);
 #else
@@ -200,13 +200,13 @@ static inline uint16_t mavlink_msg_enemy_gps_packet_encode_status(uint8_t system
  */
 #ifdef MAVLINK_USE_CONVENIENCE_FUNCTIONS
 
-static inline void mavlink_msg_enemy_gps_packet_send(mavlink_channel_t chan, int32_t enemy_latitude, int32_t enemy_longitude, uint8_t enemy_altitude)
+static inline void mavlink_msg_enemy_gps_packet_send(mavlink_channel_t chan, float enemy_latitude, float enemy_longitude, float enemy_altitude)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
     char buf[MAVLINK_MSG_ID_ENEMY_GPS_PACKET_LEN];
-    _mav_put_int32_t(buf, 0, enemy_latitude);
-    _mav_put_int32_t(buf, 4, enemy_longitude);
-    _mav_put_uint8_t(buf, 8, enemy_altitude);
+    _mav_put_float(buf, 0, enemy_latitude);
+    _mav_put_float(buf, 4, enemy_longitude);
+    _mav_put_float(buf, 8, enemy_altitude);
 
     _mav_finalize_message_chan_send(chan, MAVLINK_MSG_ID_ENEMY_GPS_PACKET, buf, MAVLINK_MSG_ID_ENEMY_GPS_PACKET_MIN_LEN, MAVLINK_MSG_ID_ENEMY_GPS_PACKET_LEN, MAVLINK_MSG_ID_ENEMY_GPS_PACKET_CRC);
 #else
@@ -241,13 +241,13 @@ static inline void mavlink_msg_enemy_gps_packet_send_struct(mavlink_channel_t ch
   is usually the receive buffer for the channel, and allows a reply to an
   incoming message with minimum stack space usage.
  */
-static inline void mavlink_msg_enemy_gps_packet_send_buf(mavlink_message_t *msgbuf, mavlink_channel_t chan,  int32_t enemy_latitude, int32_t enemy_longitude, uint8_t enemy_altitude)
+static inline void mavlink_msg_enemy_gps_packet_send_buf(mavlink_message_t *msgbuf, mavlink_channel_t chan,  float enemy_latitude, float enemy_longitude, float enemy_altitude)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
     char *buf = (char *)msgbuf;
-    _mav_put_int32_t(buf, 0, enemy_latitude);
-    _mav_put_int32_t(buf, 4, enemy_longitude);
-    _mav_put_uint8_t(buf, 8, enemy_altitude);
+    _mav_put_float(buf, 0, enemy_latitude);
+    _mav_put_float(buf, 4, enemy_longitude);
+    _mav_put_float(buf, 8, enemy_altitude);
 
     _mav_finalize_message_chan_send(chan, MAVLINK_MSG_ID_ENEMY_GPS_PACKET, buf, MAVLINK_MSG_ID_ENEMY_GPS_PACKET_MIN_LEN, MAVLINK_MSG_ID_ENEMY_GPS_PACKET_LEN, MAVLINK_MSG_ID_ENEMY_GPS_PACKET_CRC);
 #else
@@ -271,9 +271,9 @@ static inline void mavlink_msg_enemy_gps_packet_send_buf(mavlink_message_t *msgb
  *
  * @return [degE7] rakip enlem koordinat verisi
  */
-static inline int32_t mavlink_msg_enemy_gps_packet_get_enemy_latitude(const mavlink_message_t* msg)
+static inline float mavlink_msg_enemy_gps_packet_get_enemy_latitude(const mavlink_message_t* msg)
 {
-    return _MAV_RETURN_int32_t(msg,  0);
+    return _MAV_RETURN_float(msg,  0);
 }
 
 /**
@@ -281,9 +281,9 @@ static inline int32_t mavlink_msg_enemy_gps_packet_get_enemy_latitude(const mavl
  *
  * @return [degE7] rakip boylam koordinat verisi
  */
-static inline int32_t mavlink_msg_enemy_gps_packet_get_enemy_longitude(const mavlink_message_t* msg)
+static inline float mavlink_msg_enemy_gps_packet_get_enemy_longitude(const mavlink_message_t* msg)
 {
-    return _MAV_RETURN_int32_t(msg,  4);
+    return _MAV_RETURN_float(msg,  4);
 }
 
 /**
@@ -291,9 +291,9 @@ static inline int32_t mavlink_msg_enemy_gps_packet_get_enemy_longitude(const mav
  *
  * @return [m] rakip irtifa verisi
  */
-static inline uint8_t mavlink_msg_enemy_gps_packet_get_enemy_altitude(const mavlink_message_t* msg)
+static inline float mavlink_msg_enemy_gps_packet_get_enemy_altitude(const mavlink_message_t* msg)
 {
-    return _MAV_RETURN_uint8_t(msg,  8);
+    return _MAV_RETURN_float(msg,  8);
 }
 
 /**

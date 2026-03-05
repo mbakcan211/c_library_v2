@@ -279,7 +279,7 @@ static void mavlink_test_enemy_gps_packet(uint8_t system_id, uint8_t component_i
         uint8_t buffer[MAVLINK_MAX_PACKET_LEN];
         uint16_t i;
     mavlink_enemy_gps_packet_t packet_in = {
-        963497464,963497672,29
+        17.0,45.0,73.0
     };
     mavlink_enemy_gps_packet_t packet1, packet2;
         memset(&packet1, 0, sizeof(packet1));
@@ -526,7 +526,7 @@ static void mavlink_test_qr_location_packet(uint8_t system_id, uint8_t component
         uint8_t buffer[MAVLINK_MAX_PACKET_LEN];
         uint16_t i;
     mavlink_qr_location_packet_t packet_in = {
-        963497464,963497672
+        17.0,45.0
     };
     mavlink_qr_location_packet_t packet1, packet2;
         memset(&packet1, 0, sizeof(packet1));

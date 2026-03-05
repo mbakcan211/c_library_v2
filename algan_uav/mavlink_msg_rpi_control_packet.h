@@ -5,7 +5,7 @@
 
 
 typedef struct __mavlink_rpi_control_packet_t {
- int8_t command_code; /*<  Raspberry'ye verilecek önceden hazırlanmış komut kodları*/
+ uint8_t command_code; /*<  Raspberry'ye verilecek önceden hazırlanmış komut kodları*/
  int8_t parametre_1; /*<  İhtiyaç halinde girilecek komut parametreleri-1*/
  int8_t parametre_2; /*<  İhtiyaç halinde girilecek komut parametreleri-2*/
  int8_t parametre_3; /*<  İhtiyaç halinde girilecek komut parametreleri-3*/
@@ -16,8 +16,8 @@ typedef struct __mavlink_rpi_control_packet_t {
 #define MAVLINK_MSG_ID_13009_LEN 4
 #define MAVLINK_MSG_ID_13009_MIN_LEN 4
 
-#define MAVLINK_MSG_ID_RPI_CONTROL_PACKET_CRC 77
-#define MAVLINK_MSG_ID_13009_CRC 77
+#define MAVLINK_MSG_ID_RPI_CONTROL_PACKET_CRC 248
+#define MAVLINK_MSG_ID_13009_CRC 248
 
 
 
@@ -26,7 +26,7 @@ typedef struct __mavlink_rpi_control_packet_t {
     13009, \
     "RPI_CONTROL_PACKET", \
     4, \
-    {  { "command_code", NULL, MAVLINK_TYPE_INT8_T, 0, 0, offsetof(mavlink_rpi_control_packet_t, command_code) }, \
+    {  { "command_code", NULL, MAVLINK_TYPE_UINT8_T, 0, 0, offsetof(mavlink_rpi_control_packet_t, command_code) }, \
          { "parametre_1", NULL, MAVLINK_TYPE_INT8_T, 0, 1, offsetof(mavlink_rpi_control_packet_t, parametre_1) }, \
          { "parametre_2", NULL, MAVLINK_TYPE_INT8_T, 0, 2, offsetof(mavlink_rpi_control_packet_t, parametre_2) }, \
          { "parametre_3", NULL, MAVLINK_TYPE_INT8_T, 0, 3, offsetof(mavlink_rpi_control_packet_t, parametre_3) }, \
@@ -36,7 +36,7 @@ typedef struct __mavlink_rpi_control_packet_t {
 #define MAVLINK_MESSAGE_INFO_RPI_CONTROL_PACKET { \
     "RPI_CONTROL_PACKET", \
     4, \
-    {  { "command_code", NULL, MAVLINK_TYPE_INT8_T, 0, 0, offsetof(mavlink_rpi_control_packet_t, command_code) }, \
+    {  { "command_code", NULL, MAVLINK_TYPE_UINT8_T, 0, 0, offsetof(mavlink_rpi_control_packet_t, command_code) }, \
          { "parametre_1", NULL, MAVLINK_TYPE_INT8_T, 0, 1, offsetof(mavlink_rpi_control_packet_t, parametre_1) }, \
          { "parametre_2", NULL, MAVLINK_TYPE_INT8_T, 0, 2, offsetof(mavlink_rpi_control_packet_t, parametre_2) }, \
          { "parametre_3", NULL, MAVLINK_TYPE_INT8_T, 0, 3, offsetof(mavlink_rpi_control_packet_t, parametre_3) }, \
@@ -57,11 +57,11 @@ typedef struct __mavlink_rpi_control_packet_t {
  * @return length of the message in bytes (excluding serial stream start sign)
  */
 static inline uint16_t mavlink_msg_rpi_control_packet_pack(uint8_t system_id, uint8_t component_id, mavlink_message_t* msg,
-                               int8_t command_code, int8_t parametre_1, int8_t parametre_2, int8_t parametre_3)
+                               uint8_t command_code, int8_t parametre_1, int8_t parametre_2, int8_t parametre_3)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
     char buf[MAVLINK_MSG_ID_RPI_CONTROL_PACKET_LEN];
-    _mav_put_int8_t(buf, 0, command_code);
+    _mav_put_uint8_t(buf, 0, command_code);
     _mav_put_int8_t(buf, 1, parametre_1);
     _mav_put_int8_t(buf, 2, parametre_2);
     _mav_put_int8_t(buf, 3, parametre_3);
@@ -95,11 +95,11 @@ static inline uint16_t mavlink_msg_rpi_control_packet_pack(uint8_t system_id, ui
  * @return length of the message in bytes (excluding serial stream start sign)
  */
 static inline uint16_t mavlink_msg_rpi_control_packet_pack_status(uint8_t system_id, uint8_t component_id, mavlink_status_t *_status, mavlink_message_t* msg,
-                               int8_t command_code, int8_t parametre_1, int8_t parametre_2, int8_t parametre_3)
+                               uint8_t command_code, int8_t parametre_1, int8_t parametre_2, int8_t parametre_3)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
     char buf[MAVLINK_MSG_ID_RPI_CONTROL_PACKET_LEN];
-    _mav_put_int8_t(buf, 0, command_code);
+    _mav_put_uint8_t(buf, 0, command_code);
     _mav_put_int8_t(buf, 1, parametre_1);
     _mav_put_int8_t(buf, 2, parametre_2);
     _mav_put_int8_t(buf, 3, parametre_3);
@@ -137,11 +137,11 @@ static inline uint16_t mavlink_msg_rpi_control_packet_pack_status(uint8_t system
  */
 static inline uint16_t mavlink_msg_rpi_control_packet_pack_chan(uint8_t system_id, uint8_t component_id, uint8_t chan,
                                mavlink_message_t* msg,
-                                   int8_t command_code,int8_t parametre_1,int8_t parametre_2,int8_t parametre_3)
+                                   uint8_t command_code,int8_t parametre_1,int8_t parametre_2,int8_t parametre_3)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
     char buf[MAVLINK_MSG_ID_RPI_CONTROL_PACKET_LEN];
-    _mav_put_int8_t(buf, 0, command_code);
+    _mav_put_uint8_t(buf, 0, command_code);
     _mav_put_int8_t(buf, 1, parametre_1);
     _mav_put_int8_t(buf, 2, parametre_2);
     _mav_put_int8_t(buf, 3, parametre_3);
@@ -213,11 +213,11 @@ static inline uint16_t mavlink_msg_rpi_control_packet_encode_status(uint8_t syst
  */
 #ifdef MAVLINK_USE_CONVENIENCE_FUNCTIONS
 
-static inline void mavlink_msg_rpi_control_packet_send(mavlink_channel_t chan, int8_t command_code, int8_t parametre_1, int8_t parametre_2, int8_t parametre_3)
+static inline void mavlink_msg_rpi_control_packet_send(mavlink_channel_t chan, uint8_t command_code, int8_t parametre_1, int8_t parametre_2, int8_t parametre_3)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
     char buf[MAVLINK_MSG_ID_RPI_CONTROL_PACKET_LEN];
-    _mav_put_int8_t(buf, 0, command_code);
+    _mav_put_uint8_t(buf, 0, command_code);
     _mav_put_int8_t(buf, 1, parametre_1);
     _mav_put_int8_t(buf, 2, parametre_2);
     _mav_put_int8_t(buf, 3, parametre_3);
@@ -256,11 +256,11 @@ static inline void mavlink_msg_rpi_control_packet_send_struct(mavlink_channel_t 
   is usually the receive buffer for the channel, and allows a reply to an
   incoming message with minimum stack space usage.
  */
-static inline void mavlink_msg_rpi_control_packet_send_buf(mavlink_message_t *msgbuf, mavlink_channel_t chan,  int8_t command_code, int8_t parametre_1, int8_t parametre_2, int8_t parametre_3)
+static inline void mavlink_msg_rpi_control_packet_send_buf(mavlink_message_t *msgbuf, mavlink_channel_t chan,  uint8_t command_code, int8_t parametre_1, int8_t parametre_2, int8_t parametre_3)
 {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
     char *buf = (char *)msgbuf;
-    _mav_put_int8_t(buf, 0, command_code);
+    _mav_put_uint8_t(buf, 0, command_code);
     _mav_put_int8_t(buf, 1, parametre_1);
     _mav_put_int8_t(buf, 2, parametre_2);
     _mav_put_int8_t(buf, 3, parametre_3);
@@ -288,9 +288,9 @@ static inline void mavlink_msg_rpi_control_packet_send_buf(mavlink_message_t *ms
  *
  * @return  Raspberry'ye verilecek önceden hazırlanmış komut kodları
  */
-static inline int8_t mavlink_msg_rpi_control_packet_get_command_code(const mavlink_message_t* msg)
+static inline uint8_t mavlink_msg_rpi_control_packet_get_command_code(const mavlink_message_t* msg)
 {
-    return _MAV_RETURN_int8_t(msg,  0);
+    return _MAV_RETURN_uint8_t(msg,  0);
 }
 
 /**
